@@ -6,38 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Markdown Notebook</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <style>
-        .notebook,.input,.markdown{
-            /* border: 1px solid red; */
-            height: 1000px;
-        }
-        .notebook{
-            width: 20%;
-            position: absolute;
-            left: 0;
-            top: 0;
-            background-color: aqua;
-        }
-        .input{
-            width: 40%;
-            position: absolute;
-            left: 20%;
-            top: 0;
-            background-color: bisque;
-        }
-        .markdown {
-            width: 40%;
-            position: absolute;
-            left: 60%;
-            top: 0;
-            background-color: gainsboro;
-        }
-    </style>
     <div id='Notebook'>
         <div class="notebook">NoteBook</div>
-        <div class="input">Input</div>
+        <div class="input">
+            <textarea class="inputtext">
+                
+            </textarea>
+        </div>
         <div class="markdown">MarkDown</div>
     </div>
     <script>
