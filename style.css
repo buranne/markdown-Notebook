@@ -1,34 +1,47 @@
-       .notebook,.input,.markdown{
-            /* border: 1px solid red; */
-            height: 1000px;
-        }
+body{
+  margin: 0;
+}
 
-        #Notebook{
-            display: flex;
-        }
-        .notebook{
-            width: 20%;
-            position: absolute;
-            left: 0;
-            top: 0;
-            background-color: aqua;
-        }
-        .input{
-            width: 40%;
-            position: absolute;
-            left: 20%;
-            top: 0;
-            background-color: bisque;
-        }
-        .markdown {
-            width: 40%;
-            position: absolute;
-            left: 60%;
-            top: 0;
-            background-color: gainsboro;
-        }
-        .inputtext{
-            width: 100%;
-            height: 100%;
-            background-color: bisque;
-        }
+.notebook,.input,.markdown{
+  height: 1000px;
+} 
+
+#notebook{
+  display: flex;
+}
+
+.notebook{
+  width: 20%;
+  background-color: aqua;
+}
+
+.input{
+  width: 40%;
+  background-color: bisque;
+}
+
+.inputText{
+  width: 98%;
+  height: 100%;
+  background-color: bisque;
+}
+
+.markdown{
+  width: 40%;
+  background-color: blanchedalmond;
+}
+
+button{
+  height: 30px;
+}
+
+.note{
+  /* border: 1px solid rebeccapurple; */
+  background: seagreen;
+  margin-bottom: 1px;
+  height: 30px;
+}
+
+.note.selected{
+  background: skyblue;
+}

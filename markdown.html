@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/marked"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Markdown notebook</title>
+</head>
+
+<body>
+    <div id="notebook">
+        <div class="notebook">
+            <div>
+                <button v-bind:title="addButtonTitle" v-on:click="addNote">Add Note</button>
+                <div @click="selectNote(note)"  class="note"
+                :class="{selected:note===selectedNote}" 
+                v-for="note of notes">{{note.title}}</div>
+            </div>
+        </div>
+        <div class="input">
+            <textarea class="inputText" v-model="selectedNote.content" v-if="selectedNote">
+            </textarea>
+        </div>
+        <div class="markdown" v-html="previewMarked" v-if="selectedNote">
+        </div>
+    </div>
+
+
+    <script>
+
+        var vm = new Vue({
+
+            created() {
+                this.content = localStorage.getItem('content') || 'You can write in **markdown**'
+            },
+
+            el: "#notebook",
+
+            data: {
+                content: "",
+                notes: [],
+                selectedId:null,
+            },
+
+            computed: {
+                previewMarked() {
+                    return this.selectedNote ?  marked(this.selectedNote.content) :''
+                },
+
+                addButtonTitle(){
+                    return this.notes.length +'  notebook' 
+                },
+
+                selectedNote(){
+                    return this.notes.find(note=>note.id===this.selectedId)
+                }
+            },
+
+            watch: {
+                // content: {
+                //     handler: 'saveNote',
+                // }
+                notes:{
+                    handler:"saveNote",
+                    deep:true,
+                }
+            },
+
+            methods: {
+                addNote() {
+                    const time = Date.now()
+                    const note = {
+                        id: String(time),
+                        title: 'New note' + (this.notes.length + 1),
+                        content: '**Hi!**',
+                        created: time,
+                        favorite: false,
+                    }
+                    this.notes.push(note)
+                },
+
+                saveNote() {
+                    console.log("saving note:", this.notes)
+                    localStorage.setItem("notes", this.notes)
+                    // console.log('saving note:', this.content)
+                    // localStorage.setItem('content', this.content)
+                },
+
+                selectNote(note){
+                    this.selectedId=note.id,
+                    console.log(this.selectedId)
+                }
+            }
+        })
+
+        console.log('restored noted:', localStorage.getItem('content'))
+
+    </script>
+
+</body>
+
+</html>
